@@ -13,48 +13,58 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Q1. Count Vowels in a String
-      id: q1-count-vowels-in-a-string
+    - name: Q1 Basic
+      id: q1-basic
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Q1. Count Vowels in a String
+        test-name: Q1 Basic
         setup-command: pip install pytest
-        command: pytest test_question1.py
+        command: pytest test_question1_basic.py
         timeout: 10
-        max-score: 0
-    - name: Q2. Find Second Highest Number
-      id: q2-find-second-highest-number
+        max-score: 3
+    - name: Q1 Case
+      id: q1-case
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Q2. Find Second Highest Number
+        test-name: Q1 Case
         setup-command: pip install pytest
-        command: pytest test_question2.py
+        command: pytest test_question1_case.py
         timeout: 10
-        max-score: 0
-    - name: Q3. JSON Data Pipeline with Functional Programming
-      id: q3-json-data-pipeline-with-functional-programming
+        max-score: 2
+    - name: Q1 No vowels
+      id: q1-no-vowels
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Q3. JSON Data Pipeline with Functional Programming
+        test-name: Q1 No vowels
         setup-command: pip install pytest
-        command: pytest test_question3.py
+        command: pytest test_question1_no_vowels.py
         timeout: 10
-        max-score: 0
-    - name: Final Score
-      id: final-score
+        max-score: 1
+    - name: Q1 Invalid
+      id: q1-invalid
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Final Score
+        test-name: Q1 Invalid
         setup-command: pip install pytest
-        command: pytest || true
+        command: pytest test_question1_invalid.py
         timeout: 10
-        max-score: 40
+        max-score: 2
+    - name: Q1 Symbols
+      id: q1-symbols
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Q1 Symbols
+        setup-command: pip install pytest
+        command: pytest test_question1_symbols.py
+        timeout: 10
+        max-score: 2
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        Q1-COUNT-VOWELS-IN-A-STRING_RESULTS: "${{steps.q1-count-vowels-in-a-string.outputs.result}}"
-        Q2-FIND-SECOND-HIGHEST-NUMBER_RESULTS: "${{steps.q2-find-second-highest-number.outputs.result}}"
-        Q3-JSON-DATA-PIPELINE-WITH-FUNCTIONAL-PROGRAMMING_RESULTS: "${{steps.q3-json-data-pipeline-with-functional-programming.outputs.result}}"
-        FINAL-SCORE_RESULTS: "${{steps.final-score.outputs.result}}"
+        Q1-BASIC_RESULTS: "${{steps.q1-basic.outputs.result}}"
+        Q1-CASE_RESULTS: "${{steps.q1-case.outputs.result}}"
+        Q1-NO-VOWELS_RESULTS: "${{steps.q1-no-vowels.outputs.result}}"
+        Q1-INVALID_RESULTS: "${{steps.q1-invalid.outputs.result}}"
+        Q1-SYMBOLS_RESULTS: "${{steps.q1-symbols.outputs.result}}"
       with:
-        runners: q1-count-vowels-in-a-string,q2-find-second-highest-number,q3-json-data-pipeline-with-functional-programming,final-score
+        runners: q1-basic,q1-case,q1-no-vowels,q1-invalid,q1-symbols
