@@ -103,6 +103,51 @@ jobs:
         command: pytest test_question2_single.py
         timeout: 10
         max-score: 2
+    - name: Q3 Department filter
+      id: q3-department-filter
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Q3 Department filter
+        setup-command: pip install pytest
+        command: pytest test_question3_dept_filter.py
+        timeout: 10
+        max-score: 4
+    - name: Q3 Exception
+      id: q3-exception
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Q3 Exception
+        setup-command: pip install pytest
+        command: pytest test_question3_exception.py
+        timeout: 10
+        max-score: 4
+    - name: Q3 Load json
+      id: q3-load-json
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Q3 Load json
+        setup-command: pip install pytest
+        command: pytest test_question3_load_json.py
+        timeout: 10
+        max-score: 4
+    - name: Q3 Salary filter
+      id: q3-salary-filter
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Q3 Salary filter
+        setup-command: pip install pytest
+        command: pytest test_question3_sal_filter.py
+        timeout: 10
+        max-score: 4
+    - name: Q3 Sorting
+      id: q3-sorting
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Q3 Sorting
+        setup-command: pip install pytest
+        command: pytest test_question3_sorting.py
+        timeout: 10
+        max-score: 4
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -116,5 +161,10 @@ jobs:
         Q2-INVALID_RESULTS: "${{steps.q2-invalid.outputs.result}}"
         Q2-NEGATIVE_RESULTS: "${{steps.q2-negative.outputs.result}}"
         Q2-SINGLE-ELEMENT_RESULTS: "${{steps.q2-single-element.outputs.result}}"
+        Q3-DEPARTMENT-FILTER_RESULTS: "${{steps.q3-department-filter.outputs.result}}"
+        Q3-EXCEPTION_RESULTS: "${{steps.q3-exception.outputs.result}}"
+        Q3-LOAD-JSON_RESULTS: "${{steps.q3-load-json.outputs.result}}"
+        Q3-SALARY-FILTER_RESULTS: "${{steps.q3-salary-filter.outputs.result}}"
+        Q3-SORTING_RESULTS: "${{steps.q3-sorting.outputs.result}}"
       with:
-        runners: q1-basic,q1-case,q1-no-vowels,q1-invalid,q1-symbols,q2-basic,q2-duplicates,q2-invalid,q2-negative,q2-single-element
+        runners: q1-basic,q1-case,q1-no-vowels,q1-invalid,q1-symbols,q2-basic,q2-duplicates,q2-invalid,q2-negative,q2-single-element,q3-department-filter,q3-exception,q3-load-json,q3-salary-filter,q3-sorting
